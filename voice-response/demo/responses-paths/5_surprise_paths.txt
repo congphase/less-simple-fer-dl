@@ -1,0 +1,3 @@
+C:\Users\phalc\Documents\Dao-Tao\Course-Deep-Learning\Project\Cuoi-Ky\voice-response\dir\5_surprise_response_0.mp3
+C:\Users\phalc\Documents\Dao-Tao\Course-Deep-Learning\Project\Cuoi-Ky\voice-response\dir\5_surprise_response_1.mp3
+C:\Users\phalc\Documents\Dao-Tao\Course-Deep-Learning\Project\Cuoi-Ky\voice-response\dir\5_surprise_response_2.mp3

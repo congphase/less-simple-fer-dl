@@ -1,8 +1,10 @@
 # DEFAULT WIDTH, HEIGHT = 640, 480
-# import the opencv library 
+
 import cv2 
 from playsound import playsound
 import random
+import os
+import utils
   
 # define a video capture object 
 vid = cv2.VideoCapture(0) 
@@ -15,7 +17,6 @@ if not vid.isOpened():
 N_FPS = vid.get(cv2.CAP_PROP_FPS)  
 PREDICTION_TIMER = N_FPS*4
 FONT = cv2.FONT_HERSHEY_SIMPLEX
-
 
 N_FPS = vid.get(cv2.CAP_PROP_FPS)
 print(f'fps: {N_FPS}')
@@ -44,7 +45,9 @@ while(True):
 
         # tu cho label
         label = '0_angry'
-        playsound(r'C:\Users\phalc\Documents\Dao-Tao\Course-Deep-Learning\Project\Cuoi-Ky\voice-response\dir\0_angry_response_0.mp3')
+        lines = utils.response_paths(label)
+        random_response = random.choice(lines)
+        playsound(random_response)
         prediction_timer = PREDICTION_TIMER
 
         
