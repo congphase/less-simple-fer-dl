@@ -1,0 +1,8 @@
+name: voice-win-conda
+channels:
+  - defaults
+dependencies:
+  - opencv
+  - flask
+  - mtcnn
+prefix: C:\Users\phalc\Anaconda3\envs\voice-win-conda
