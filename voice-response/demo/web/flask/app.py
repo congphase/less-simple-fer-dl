@@ -40,7 +40,15 @@ def gen_frames():
 
             if(prediction_timer == 0):
                 print('Thực hiện predict!')
-                detector.detect_faces()
+                detection = detector.detect_faces(frame)
+                print(f'DEBUG: detections: {detection}')
+
+                # draw bounding boxes
+                x=detection[0]['box'][0]
+                y=detection[0]['box'][1]
+                w=detection[0]['box'][2]
+                h=detection[0]['box'][3]
+                frame = cv2.rectangle(frame, (x, y), (x+w, y+h), (255,255,0), 2)
 
 
                 # tu cho label
