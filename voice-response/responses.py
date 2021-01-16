@@ -81,26 +81,3 @@ for label, payloads in responses_text.items():
         count += 1
 
         playsound(filename)
-
-
-
-'''
-payload = 'Ấy ơi bớt giận. Khơm đao Khơm đao.'
-headers = {
-    'api-key': 'cOtYkSMBr4XyjE6M13ckHgQNSS55q84M',
-    'speed': '',
-    'voice': 'banmai'
-}
-
-response = requests.request('POST', url, data=payload.encode('utf-8'), headers=headers)
-
-response_dict = ast.literal_eval(response.text)
-
-print(response_dict)
-
-doc = requests.get(response_dict['async'])
-
-with open('myfile.mp3', 'wb') as f:
-    f.write(doc.content)
-    
-'''
