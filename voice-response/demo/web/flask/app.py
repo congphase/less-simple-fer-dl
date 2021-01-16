@@ -18,7 +18,6 @@ vid = cv2.VideoCapture(0)
 N_FPS = vid.get(cv2.CAP_PROP_FPS)  
 PREDICTION_TIMER = N_FPS*3
 FONT = cv2.FONT_HERSHEY_SIMPLEX
-N_FPS = vid.get(cv2.CAP_PROP_FPS)
 print(f'fps: {N_FPS}')
 
 
@@ -52,6 +51,7 @@ def predict(face_img):
 def gen_frames():  
     while True:
         success, frame = vid.read()  # read the camera frame
+        start_ = time()
         if not success:
             break
         else:
@@ -85,6 +85,8 @@ def gen_frames():
                 label = predict(face_img)
                 end = time()
                 print(f'DEBUG: Prediction time: {(end-start):.3f}s')
+                print(f'DEBUG: Overall time: {time()-start_}s')
+
                 label = np.argmax(label, axis=-1)[0]
                 label = label_converter[label]
                 #cv2.imwrite(f'predict_{label}.jpg', face_img)
@@ -92,7 +94,7 @@ def gen_frames():
                 frame = cv2.rectangle(frame, (x, y+h), (x+w, y+h+30), (255,255,0), -1)
                 cv2.putText(frame, text=label[2:], org=(x, y+h+25), fontFace=FONT, fontScale=1, \
                     color=(0, 0, 0), thickness=1, lineType=cv2.LINE_AA)
-                cv2.imwrite(f'frame_{x}.jpg', frame)
+                #cv2.imwrite(f'frame_{x}.jpg', frame)
 
                 # prepare the coresponding response
                 lines = utils.response_paths(label)
