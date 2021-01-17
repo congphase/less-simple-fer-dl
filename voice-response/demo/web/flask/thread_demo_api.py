@@ -1,6 +1,6 @@
+import cv2
 import argparse
 import os
-import cv2
 from CountsPerSec import CountsPerSec
 #from VideoGet import VideoGet
 from VideoShow import VideoShow
@@ -15,13 +15,14 @@ import numpy as np
 
 from flask import Flask, render_template, Response
 from threading import Thread
+import requests
 
 app = Flask(__name__)
 
 
 # DEFINITIONS
 N_FPS = 30
-PREDICTION_TIMER = N_FPS*5
+PREDICTION_TIMER = N_FPS*6
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 print(f'fps: {N_FPS}')
 
@@ -30,16 +31,29 @@ prediction_timer = PREDICTION_TIMER
 #detector = MTCNN()
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
-model = load_model(r'C:\Users\phalc\Documents\Dao-Tao\Course-Deep-Learning\Project\Cuoi-Ky\dl-end-term\voice-response\demo\models\VGGFACE2_V1_RandomOverSampling.h5')
+model = load_model(r'C:\Users\phalc\Documents\Dao-Tao\Course-Deep-Learning\Project\Cuoi-Ky\dl-end-term\voice-response\demo\models\vggface1_ferplus.h5')
 
 label_converter = {
-    0: '0_angry',
-    1: '1_disgust',
-    2: '2_fear',
-    3: '3_happy',
-    4: '4_sad',
-    5: '5_surprise',
-    6: '6_neutral'
+    0: 'Neutral', 
+    1: 'Happiness', 
+    2: 'Surprise', 
+    3: 'Sadness', 
+    4: 'Anger', 
+    5: 'Disgust', 
+    6: 'Fear', 
+    7: 'Contempt'
+}
+
+
+label_converter_2 = {
+    'Neutral': '6_neutral',
+    'Happiness': '3_happy', 
+    'Surprise': '5_surprise',
+    'Sadness': '4_sad',
+    'Anger': '0_angry',
+    'Disgust': '1_disgust', 
+    'Fear': '2_fear', 
+    'Contempt': '1_disgust'
 }
 
 
@@ -57,7 +71,7 @@ def predict(face_img):
 def talk(audio=''):
     playsound(audio)
 
-flag = 0
+
 class VideoGet:
     """
     Class that continuously gets frames from a VideoCapture object
@@ -107,19 +121,23 @@ class VideoGet:
                 # Decrease the timer
                 prediction_timer -= 1
 
-                global flag
                 if(prediction_timer == 0 and len(detection) == 1):
-                    flag = 1
                     print('Thực hiện predict!')
                     start = time()
+
                     label = predict(face_img)
                     end = time()
                     print(f'DEBUG: Prediction time: {(end-start):.3f}s')
                     print(f'DEBUG: Overall time: {time()-start_}s')
+
                     label = np.argmax(label, axis=-1)[0]
                     label = label_converter[label]
+                    label = label_converter_2[label]
+                    print(f'DEBUG: lbbbbbbbbbbbbb: {label}')
 
                     frame_ = cv2.rectangle(frame_, (x, y+h), (x+w, y+h+30), (255,255,0), -1)
+                    #cv2.putText(frame_, text=label[2:], org=(x, y+h+25), fontFace=FONT, fontScale=1, \
+                    #    color=(0, 0, 0), thickness=1, lineType=cv2.LINE_AA)
                     
 
                     # prepare the coresponding response
@@ -129,16 +147,18 @@ class VideoGet:
                     # spawn a new thread for talking only
                     audio_thread = Thread(target=talk, args=(random_response,))
                     audio_thread.start()
-
-                if(flag==1 and prediction_timer!=0):
-                    flag=0
-                    cv2.putText(frame_, text=label[2:], org=(x, y+h+25), fontFace=FONT, fontScale=1, \
-                        color=(0, 0, 0), thickness=1, lineType=cv2.LINE_AA)                    
+                    #begin_ = time()
+                    #playsound(random_response)
+                    #print(f'DEBUG: speak time: {time()-begin_}s')
 
                 if(prediction_timer==0):
                     prediction_timer = PREDICTION_TIMER
 
 
+
+
+
+    
 
 def putIterationsPerSec(frame, iterations_per_sec):
     """
