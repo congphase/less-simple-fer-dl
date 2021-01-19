@@ -85,6 +85,7 @@ dependencies:
   - pyreadline=2.1=py38h32f6830_1002
   - pysocks=1.7.1=py38haa244fe_3
   - python=3.8.5=h5fd99cc_1
+  - python-wget=3.2=py_0
   - python_abi=3.8=1_cp38
   - pyyaml=5.3.1=py38h294d835_2
   - qt=5.12.9=hb2cf2c5_0
@@ -118,5 +119,7 @@ dependencies:
   - zlib=1.2.11=h62dcd97_4
   - zstd=1.4.5=h04227a9_0
   - pip:
+    - keras-vggface==0.6
+    - pillow==8.1.0
     - playsound==1.2.2
 prefix: C:\Users\phalc\Anaconda3\envs\voice-win-conda
