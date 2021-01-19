@@ -9,10 +9,10 @@
 - Create a simple web app using Flask simulating a virtual assistant which will response with audio to the corresponsing expression
 
 ### How to reproduce the demo
-Make sure webcam, speaker is available
+Make sure webcam, speaker is available  
 Create the conda environment:
-`conda myenv create -f environment.yml`
-Navigate to voice-response/demo/web/flask
+`conda myenv create -f environment.yml`  
+Navigate to voice-response/demo/web/flask  
 Run `python thread_demo.py`
 
 ### Environments
