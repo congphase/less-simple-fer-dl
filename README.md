@@ -1,5 +1,5 @@
 # dl-end-term
-
+## The members: Dung, Nhat, Tam, and Pha
 ## Project summarization:
 ### Update from the Basic Machine Learning project
 - Apply DL in solving Facial Expression Recognition problem
