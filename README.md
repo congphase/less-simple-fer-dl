@@ -22,6 +22,3 @@ Run `python thread_demo.py`
 
 ### Environments
 **Windows**, Conda, Python
-
-### Code quality
-Low. Improvements must be made :(
