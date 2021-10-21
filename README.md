@@ -1,6 +1,5 @@
 # dl-end-term
-## The members: Dung, Nhat, Tam, and Pha
-## Project summarization:
+## Project summarization
 ### Update from the Basic Machine Learning project
 - Apply DL in solving Facial Expression Recognition problem
 - Models used: VGGFace, VGGFace2
@@ -10,8 +9,11 @@
 ### Pipeline
 ![image](https://user-images.githubusercontent.com/28902802/136682465-5bc563d4-8fba-484b-935e-26ad79dc8bfe.png)
 
+### More details
+Read our thesis [here](dl-facial-expression-recognition/docs/Final_report.pdf)
 
 ### How to reproduce the demo
+![](dl-facial-expression-recognition/docs/reproduce_demo.png)
 Make sure webcam, speaker is available  
 Create the conda environment:
 `conda myenv create -f environment.yml`  
