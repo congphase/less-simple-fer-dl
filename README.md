@@ -13,7 +13,7 @@
 Read our thesis [here](docs/Final_report.pdf)
 
 ### How to reproduce the demo
-![](docs/reproduce_demo.png)
+![](docs/reproduce.png)
 Make sure webcam, speaker is available  
 Create the conda environment:
 `conda myenv create -f environment.yml`  
