@@ -1,4 +1,4 @@
-# dl-end-term
+# less-simple-fer-dl
 ## Project summarization
 ### Update from the Basic Machine Learning project
 - Apply DL in solving Facial Expression Recognition problem
